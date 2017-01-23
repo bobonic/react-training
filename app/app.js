@@ -1,33 +1,24 @@
-var Avatar = React.createClass({
+'use strict';
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+var KanbanApplication = React.createClass({
   render: function() {
-    return (
-      <div>
-        <PagePic pagename={this.props.pagename} />
-        <PageLink pagename={this.props.pagename} />
-      </div>
-    );
+    var elapsed = Math.round(this.props.elapsed  / 100);
+    var seconds = elapsed / 10 + (elapsed % 10 ? '' : '.0' );
+    var message =
+      'Hello World Irish! running for ' + seconds + ' seconds.';
+
+    return <p>{message}</p>;
   }
 });
 
-var PagePic = React.createClass({
-  render: function() {
-    return (
-      <img src={'https://graph.facebook.com/' + this.props.pagename + '/picture'} />
-    );
-  }
-});
+var start = new Date().getTime();
 
-var PageLink = React.createClass({
-  render: function() {
-    return (
-      <a href={'https://www.facebook.com/' + this.props.pagename}>
-        {this.props.pagename}
-      </a>
-    );
-  }
-});
-
-ReactDOM.render(
-  <Avatar pagename="Engineering" />,
-  document.getElementById('root')
-);
+setInterval(function() {
+  ReactDOM.render(
+    <KanbanApplication elapsed={new Date().getTime() - start} />,
+    document.getElementById('root')
+  );
+}, 50);
