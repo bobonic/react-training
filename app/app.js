@@ -4,21 +4,35 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 
 var KanbanApplication = React.createClass({
-  render: function() {
-    var elapsed = Math.round(this.props.elapsed  / 100);
-    var seconds = elapsed / 10 + (elapsed % 10 ? '' : '.0' );
-    var message =
-      'Hello World Irish! running for ' + seconds + ' seconds.';
-
-    return <p>{message}</p>;
+  render: function() { 
+    return <div>
+    <table class="table table-bordered">
+        <thead><tr  className="active"></tr><tr  className="active"></tr><tr  className="active"></tr></thead>
+        <tbody>
+        <tr>
+          <td>
+          <div className="panel panel-primary">
+              <div className="panel-heading">Task 1</div>
+              <div className="panel-body">Create New Class</div>
+          </div>
+          </td>
+          <td>
+          <div className="panel panel-info">
+              <div className="panel-heading">Task 2</div>
+              <div className="panel-body">Create New Module</div>
+          </div>
+          </td>
+          <td>
+          <div className="panel panel-success">
+              <div className="panel-heading">Task 3</div>
+              <div className="panel-body">Create New Component</div>
+          </div>
+          </td>
+        </tr>
+        </tbody>
+    </table>
+    </div>;
   }
 });
 
-var start = new Date().getTime();
-
-setInterval(function() {
-  ReactDOM.render(
-    <KanbanApplication elapsed={new Date().getTime() - start} />,
-    document.getElementById('root')
-  );
-}, 50);
+ReactDOM.render(<KanbanApplication />, document.getElementById('root'));
