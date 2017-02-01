@@ -2,37 +2,28 @@
 
 var React = require('react');
 var ReactDOM = require('react-dom');
+var Header = require('./components/header.jsx');
+var Footer = require('./components/footer.jsx');
+var Content = require('./components/content.jsx');
 
-var KanbanApplication = React.createClass({
+var LayoutHeader = React.createClass({
   render: function() { 
-    return <div>
-    <table class="table table-bordered">
-        <thead><tr  className="active"></tr><tr  className="active"></tr><tr  className="active"></tr></thead>
-        <tbody>
-        <tr>
-          <td>
-          <div className="panel panel-primary">
-              <div className="panel-heading">Task 1</div>
-              <div className="panel-body">Create New Class</div>
-          </div>
-          </td>
-          <td>
-          <div className="panel panel-info">
-              <div className="panel-heading">Task 2</div>
-              <div className="panel-body">Create New Module</div>
-          </div>
-          </td>
-          <td>
-          <div className="panel panel-success">
-              <div className="panel-heading">Task 3</div>
-              <div className="panel-body">Create New Component</div>
-          </div>
-          </td>
-        </tr>
-        </tbody>
-    </table>
-    </div>;
+    return <Header />;
   }
 });
 
-ReactDOM.render(<KanbanApplication />, document.getElementById('root'));
+var LayoutContent = React.createClass({
+  render: function() { 
+    return <Content />;
+  }
+});
+
+var LayoutFooter = React.createClass({
+  render: function() { 
+    return <Footer />;
+  }
+});
+
+ReactDOM.render(<LayoutHeader />, document.getElementById('header'));
+ReactDOM.render(<LayoutContent />, document.getElementById('content'));
+ReactDOM.render(<LayoutFooter />, document.getElementById('footer'));
