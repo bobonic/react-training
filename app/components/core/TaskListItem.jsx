@@ -9,9 +9,21 @@ var TaskListItem = React.createClass({
     render: function () {
         return (
             <tr>
-                <td scope="row">{this.props.taskName}: {this.props.taskDescription}</td>
+                <td>
+                    <div className="form-group">
+                        <label>{this.props.taskName} </label>
+                    </div>
+                    <div className="form-group">
+                        <label>{this.props.taskDescription} </label>
+                    </div>
+                    
+                </td>
                 <td>{this.props.taskPriority}</td>
                 <td>{this.props.taskStatus}</td>
+                <td>
+                    <button type="button" className="btn btn-success">Edit</button>&nbsp;
+                    <button type="button" className="btn btn-danger">Delete</button>
+                </td>
             </tr>
         );
     }

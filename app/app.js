@@ -25,6 +25,7 @@ var TaskListContainer = React.createClass({
   }
 });
 
+
 ReactDOM.render(<LayoutHeader />, document.getElementById('header'));
 ReactDOM.render(<TaskListContainer />, document.getElementById('content'));
 ReactDOM.render(<LayoutFooter />, document.getElementById('footer'));
