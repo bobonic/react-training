@@ -35,6 +35,11 @@ var TaskContainer = React.createClass({
             newTaskDescription: '',
             newTaskPriority: '',
             newTaskStatus: '',
+            editTaskName: '',
+            editTaskDescription: '',
+            editTaskPriority: '',
+            editTaskStatus: '',
+            editMode: '0',
             taskData: data
         };
     },
@@ -66,6 +71,26 @@ var TaskContainer = React.createClass({
             newTaskStatus: value
         });
     },
+    handleEditTaskRow: function( taskId ) {
+
+        var curRow = _.find(this.state.taskData, function(obj) {
+            return obj.TaskId === taskId;
+        });
+        
+        this.setState( {editMode: '1'} );
+
+        this.setState({
+            editTaskName: curRow.Name,
+            editTaskDescription: curRow.Description,
+            editTaskPriority: curRow.Priority,
+            editTaskStatus: curRow.Status
+        });
+    },
+    handleDeleteTaskRow: function( taskId ) {
+        var index = _.findIndex(this.state.taskData, { TaskId: taskId });
+        this.state.taskData.splice( index, 1 );	
+        this.setState( {taskData: this.state.taskData} );
+    },
     handleAddButtonClick: function () {
         var newTask = {
             TaskId: this.generateId(),
@@ -82,7 +107,8 @@ var TaskContainer = React.createClass({
             newTaskName: '',
             newTaskDescription: '',
             newTaskPriority: '',
-            newTaskStatus: ''
+            newTaskStatus: '',
+            editMode: '0'
         });
     },
     generateId: function () {
@@ -105,7 +131,11 @@ var TaskContainer = React.createClass({
                     handleNewTaskDescriptionChange={this.handleNewTaskDescriptionTextChange}
                     handleNewTaskPriorityChange={this.handleNewTaskPriorityTextChange}
                     handleNewTaskStatusChange={this.handleNewTaskStatusTextChange}
-                    onAddButtonClick={this.handleAddButtonClick}/>
+                    onAddButtonClick={this.handleAddButtonClick}
+                    onTaskDeleteButtonClick={this.handleDeleteTaskRow}
+                    onTaskEditButtonClick={this.handleEditTaskRow}
+                    editMode={this.state.editMode}
+                    />
             </div>
         );
     }

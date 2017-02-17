@@ -12,10 +12,14 @@ var TaskList = React.createClass({
             return (
                 <TaskListItem
                     key={item.TaskId}
+                    taskId={item.TaskId} 
                     taskName={item.Name} 
                     taskDescription={item.Description} 
                     taskPriority={item.Priority} 
                     taskStatus={item.Status} 
+                    taskDeleteButtonClick={this.props.onTaskDeleteButtonClick}
+                    taskEditButtonClick={this.props.onTaskEditButtonClick}
+                    editMode={this.props.editMode}
                 />
             );
         }, this);

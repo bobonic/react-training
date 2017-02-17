@@ -6,11 +6,18 @@ var TaskListItem = React.createClass({
     propTypes: {
         taskName: React.PropTypes.string.isRequired
     },
+    handleDeleteTaskRow: function() {
+        this.props.taskDeleteButtonClick( this.props.taskId );
+    },
+    handleEditTaskRow: function() {
+        this.props.taskEditButtonClick( this.props.taskId );
+    },
+
     render: function () {
         return (
             <tr>
                 <td>
-                    <div className="form-group">
+                    <div className="form-group" >
                         <label>{this.props.taskName} </label>
                     </div>
                     <div className="form-group">
@@ -21,8 +28,8 @@ var TaskListItem = React.createClass({
                 <td>{this.props.taskPriority}</td>
                 <td>{this.props.taskStatus}</td>
                 <td>
-                    <button type="button" className="btn btn-success">Edit</button>&nbsp;
-                    <button type="button" className="btn btn-danger">Delete</button>
+                    <button type="button" className="btn btn-success" onClick={this.handleEditTaskRow} >Edit</button>&nbsp;
+                    <button type="button" className="btn btn-danger" onClick={this.handleDeleteTaskRow}>Delete</button>
                 </td>
             </tr>
         );
