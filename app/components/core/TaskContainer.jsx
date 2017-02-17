@@ -35,10 +35,7 @@ var TaskContainer = React.createClass({
             newTaskDescription: '',
             newTaskPriority: '',
             newTaskStatus: '',
-            editTaskName: '',
-            editTaskDescription: '',
-            editTaskPriority: '',
-            editTaskStatus: '',
+            taskId: 0,
             editMode: '0',
             taskData: data
         };
@@ -80,10 +77,11 @@ var TaskContainer = React.createClass({
         this.setState( {editMode: '1'} );
 
         this.setState({
-            editTaskName: curRow.Name,
-            editTaskDescription: curRow.Description,
-            editTaskPriority: curRow.Priority,
-            editTaskStatus: curRow.Status
+            taskId: curRow.TaskId,
+            newTaskName: curRow.Name,
+            newTaskDescription: curRow.Description,
+            newTaskPriority: curRow.Priority,
+            newTaskStatus: curRow.Status
         });
     },
     handleDeleteTaskRow: function( taskId ) {
@@ -91,25 +89,47 @@ var TaskContainer = React.createClass({
         this.state.taskData.splice( index, 1 );	
         this.setState( {taskData: this.state.taskData} );
     },
-    handleAddButtonClick: function () {
-        var newTask = {
-            TaskId: this.generateId(),
-            Name: this.state.newTaskName,
-            Description: this.state.newTaskDescription,
-            Priority: this.state.newTaskPriority,
-            Status: this.state.newTaskStatus
-        };
+    handleSaveButtonClick: function () {
+        
+        if (this.state.editMode == '1')
+        {
+            var index = _.findIndex(this.state.taskData, { TaskId: this.state.taskId });
+            this.state.taskData.splice( index, 1 );	
+            this.setState( {taskData: this.state.taskData} );
+            
+            var newTask = {
+                TaskId: this.state.taskId,
+                Name: this.state.newTaskName,
+                Description: this.state.newTaskDescription,
+                Priority: this.state.newTaskPriority,
+                Status: this.state.newTaskStatus
+            };
 
-        var newTaskData = this.state.taskData.concat(newTask);
+            var newTaskData = this.state.taskData.concat(newTask);
 
-        this.setState({
-            taskData: newTaskData,
-            newTaskName: '',
-            newTaskDescription: '',
-            newTaskPriority: '',
-            newTaskStatus: '',
-            editMode: '0'
-        });
+        }
+        else
+        {
+            var newTask = {
+                TaskId: this.generateId(),
+                Name: this.state.newTaskName,
+                Description: this.state.newTaskDescription,
+                Priority: this.state.newTaskPriority,
+                Status: this.state.newTaskStatus
+            };
+
+            var newTaskData = this.state.taskData.concat(newTask);
+        }
+            this.setState({
+                taskData: newTaskData,
+                taskId: 0,
+                newTaskName: '',
+                newTaskDescription: '',
+                newTaskPriority: '',
+                newTaskStatus: '',
+                editMode: '0'
+            });
+        
     },
     generateId: function () {
         var max = _.maxBy(this.state.taskData, function (d) {
@@ -123,6 +143,7 @@ var TaskContainer = React.createClass({
             <div>
                 <TaskList
                     taskData={this.state.taskData} 
+                    taskId={this.state.taskId}
                     newTaskName={this.state.newTaskName}
                     newTaskDescription={this.state.newTaskDescription}
                     newTaskPriority={this.state.newTaskPriority}
@@ -131,7 +152,7 @@ var TaskContainer = React.createClass({
                     handleNewTaskDescriptionChange={this.handleNewTaskDescriptionTextChange}
                     handleNewTaskPriorityChange={this.handleNewTaskPriorityTextChange}
                     handleNewTaskStatusChange={this.handleNewTaskStatusTextChange}
-                    onAddButtonClick={this.handleAddButtonClick}
+                    onSaveButtonClick={this.handleSaveButtonClick}
                     onTaskDeleteButtonClick={this.handleDeleteTaskRow}
                     onTaskEditButtonClick={this.handleEditTaskRow}
                     editMode={this.state.editMode}

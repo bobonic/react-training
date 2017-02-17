@@ -19,7 +19,6 @@ var TaskList = React.createClass({
                     taskStatus={item.Status} 
                     taskDeleteButtonClick={this.props.onTaskDeleteButtonClick}
                     taskEditButtonClick={this.props.onTaskEditButtonClick}
-                    editMode={this.props.editMode}
                 />
             );
         }, this);
@@ -47,22 +46,28 @@ var TaskList = React.createClass({
                                     value={this.props.newTaskName} />
                             </div>
                             <div className="form-group">
-                                <input type="text" className="form-control" id="name" placeholder="Task Description" 
+                                <input type="text" className="form-control" id="description" placeholder="Task Description" 
                                     onChange={this.props.handleNewTaskDescriptionChange}
                                     value={this.props.newTaskDescription} />
                             </div>
                         </th>
                         <th>
-                            <input type="text" className="form-control" id="priority" 
-                                onChange={this.props.handleNewTaskPriorityChange}
-                                value={this.props.newTaskPriority} />
+                            <div className="form-group">
+                                <input type="text" className="form-control" id="priority" 
+                                    onChange={this.props.handleNewTaskPriorityChange}
+                                    value={this.props.newTaskPriority} />
+                            </div>
+                            <div className="form-group">
+                                <input type="text" className="form-control" id="taskId" 
+                                    value={this.props.taskId} style={{display: "none"}} />
+                            </div>
                         </th>
                         <th>
                             <input type="text" className="form-control" id="status" 
                                 onChange={this.props.handleNewTaskStatusChange}
                                 value={this.props.newTaskStatus} />
                         </th>
-                        <th><button type="button" className="btn btn-primary" onClick={this.props.onAddButtonClick} >Add New</button></th>
+                        <th><button type="button" className="btn btn-primary" onClick={this.props.onSaveButtonClick} >Save</button></th>
                     </tr>
                 </tfoot>                    
             </table>
