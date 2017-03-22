@@ -5,6 +5,8 @@ var ReactDOM = require('react-dom');
 var Header = require('./components/layout/Header.jsx');
 var Footer = require('./components/layout/Footer.jsx');
 var Content = require('./components/layout/Content.jsx');
+var Timer = require('./components/layout/Timer.jsx');
+
 var TaskContainer = require('./components/core/TaskContainer.jsx');
 
 var LayoutHeader = React.createClass({
@@ -28,4 +30,5 @@ var TaskListContainer = React.createClass({
 
 ReactDOM.render(<LayoutHeader />, document.getElementById('header'));
 ReactDOM.render(<TaskListContainer />, document.getElementById('content'));
+ReactDOM.render(<Timer />, document.getElementById('timer'));
 ReactDOM.render(<LayoutFooter />, document.getElementById('footer'));

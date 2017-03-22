@@ -1,0 +1,46 @@
+
+#clock {
+  width:200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow:hidden;
+  position:relative;
+  cursor: pointer;
+  -moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;
+}
+
+#clock div.inner {
+  background-color: #E55451;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+}
+
+#clock span {
+  color: #fff;
+  display:block;
+  font-size: 40px;
+  font-weight: bold;
+  margin-left: 41px;
+  margin-top: 71px;
+  z-index: 2;
+}
+
+#options {
+  color:#fff;
+  font-size:20px;
+}
+#options input {
+  color: #666;
+  width: 50px;
+  padding: 5px 0px 5px 5px;
+  font-size: 20px;
+  background-color: #ccc;
+  border: 0px;
+  outline: none;
+  margin: 5px;
+}
+#options input:last-of-type {
+  margin-right: 0px;
+}

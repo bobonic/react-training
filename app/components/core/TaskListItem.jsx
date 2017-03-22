@@ -27,6 +27,7 @@ var TaskListItem = React.createClass({
                 </td>
                 <td>{this.props.taskPriority}</td>
                 <td>{this.props.taskStatus}</td>
+                <td>{this.props.taskTimerConfig}</td>
                 <td>
                     <button type="button" className="btn btn-success" onClick={this.handleEditTaskRow} >Edit</button>&nbsp;
                     <button type="button" className="btn btn-danger" onClick={this.handleDeleteTaskRow}>Delete</button>

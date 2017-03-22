@@ -16,7 +16,8 @@ var TaskList = React.createClass({
                     taskName={item.Name} 
                     taskDescription={item.Description} 
                     taskPriority={item.Priority} 
-                    taskStatus={item.Status} 
+                    taskStatus={item.Status}
+                    taskTimerConfig={item.TimerConfig}
                     taskDeleteButtonClick={this.props.onTaskDeleteButtonClick}
                     taskEditButtonClick={this.props.onTaskEditButtonClick}
                 />
@@ -31,13 +32,14 @@ var TaskList = React.createClass({
                         <th>Task Details</th>
                         <th>Priority</th>
                         <th>Status</th>
+                        <th>Timer Config</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     {this.renderItems()}
                 </tbody>
-                <tfoot>
+                <tfoot >
                     <tr className="info">
                         <th>
                             <div className="form-group">
@@ -52,21 +54,40 @@ var TaskList = React.createClass({
                             </div>
                         </th>
                         <th>
-                            <div className="form-group">
-                                <input type="text" className="form-control" id="priority" 
-                                    onChange={this.props.handleNewTaskPriorityChange}
-                                    value={this.props.newTaskPriority} />
-                            </div>
+                            <select className="form-control" id="priority" 
+                                onChange={this.props.handleNewTaskPriorityChange}
+                                value={this.props.newTaskPriority}>
+                                <option value=""></option>
+                                <option value="Low">Low</option>
+                                <option value="Medium">Medium</option>
+                                <option value="High">High</option>
+                                
+                            </select>
+
                             <div className="form-group">
                                 <input type="text" className="form-control" id="taskId" 
                                     value={this.props.taskId} style={{display: "none"}} />
                             </div>
                         </th>
                         <th>
-                            <input type="text" className="form-control" id="status" 
+                            <select className="form-control" id="status" 
                                 onChange={this.props.handleNewTaskStatusChange}
-                                value={this.props.newTaskStatus} />
+                                value={this.props.newTaskStatus}>
+                                <option value=""></option>
+                                <option value="Not yet started">Not yet started</option>
+                                <option value="In progress">In progress</option>
+                                <option value="Completed">Completed</option>
+                                
+                            </select>
                         </th>
+                        <th>
+
+                            
+                            <input type="text" className="form-control" id="timerConfig" 
+                                onChange={this.props.handleNewTimerConfigChange}
+                                value={this.props.newTimerConfig} />
+                        </th>
+                        
                         <th><button type="button" className="btn btn-primary" onClick={this.props.onSaveButtonClick} >Save</button></th>
                     </tr>
                 </tfoot>                    
