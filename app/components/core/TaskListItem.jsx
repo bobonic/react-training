@@ -12,7 +12,9 @@ var TaskListItem = React.createClass({
     handleEditTaskRow: function() {
         this.props.taskEditButtonClick( this.props.taskId );
     },
-
+    handleSelectRow: function() {
+            
+    },
     render: function () {
         return (
             <tr>
@@ -27,10 +29,11 @@ var TaskListItem = React.createClass({
                 </td>
                 <td>{this.props.taskPriority}</td>
                 <td>{this.props.taskStatus}</td>
-                <td>{this.props.taskTimerConfig}</td>
+                <td>{this.props.taskDuration}</td>
                 <td>
                     <button type="button" className="btn btn-success" onClick={this.handleEditTaskRow} >Edit</button>&nbsp;
-                    <button type="button" className="btn btn-danger" onClick={this.handleDeleteTaskRow}>Delete</button>
+                    <button type="button" className="btn btn-danger" onClick={this.handleDeleteTaskRow}>Delete</button>&nbsp;
+                    <button type="button" className="btn btn-info" onClick={this.handleSelectRow}>Select</button>
                 </td>
             </tr>
         );

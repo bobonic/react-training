@@ -11,7 +11,7 @@ var data = [
         Description: 'Add Login Page',
         Priority: 'Low',
         Status: 'Not yet started',
-        TimerConfig: 15
+        Duration: 15
     },
     { 
         TaskId: 2, 
@@ -19,7 +19,7 @@ var data = [
         Description: 'Add User Profile Admin',
         Priority: 'Medium',
         Status: 'Not yet started',
-        TimerConfig: 12
+        Duration: 12
     },
     { 
         TaskId: 3, 
@@ -27,7 +27,7 @@ var data = [
         Description: 'Edit User Profile Admin',
         Priority: 'High',
         Status: 'Not yet started',
-        TimerConfig: 14
+        Duration: 14
 
     }
 ];
@@ -39,7 +39,7 @@ var TaskContainer = React.createClass({
             newTaskDescription: '',
             newTaskPriority: '',
             newTaskStatus: '',
-            newTimerConfig: '',
+            newDuration: '',
             taskId: 0,
             editMode: '0',
             taskData: data
@@ -73,11 +73,11 @@ var TaskContainer = React.createClass({
             newTaskStatus: value
         });
     },
-    handleNewTimerConfigTextChange: function (event) {
+    handleNewDurationTextChange: function (event) {
         var value = event.target.value;
 
         this.setState({
-            newTimerConfig: value
+            newDuration: value
         });
     },
     handleEditTaskRow: function( taskId ) {
@@ -94,13 +94,24 @@ var TaskContainer = React.createClass({
             newTaskDescription: curRow.Description,
             newTaskPriority: curRow.Priority,
             newTaskStatus: curRow.Status,
-            newTimerConfig: curRow.TimerConfig
+            newDuration: curRow.Duration
         });
     },
     handleDeleteTaskRow: function( taskId ) {
         var index = _.findIndex(this.state.taskData, { TaskId: taskId });
         this.state.taskData.splice( index, 1 );	
         this.setState( {taskData: this.state.taskData} );
+        
+        this.setState({
+                taskData: newTaskData,
+                taskId: 0,
+                newTaskName: '',
+                newTaskDescription: '',
+                newTaskPriority: '',
+                newTaskStatus: '',
+                newDuration: '',
+                editMode: '0'
+            });
     },
     handleSaveButtonClick: function () {
         
@@ -116,7 +127,7 @@ var TaskContainer = React.createClass({
                 Description: this.state.newTaskDescription,
                 Priority: this.state.newTaskPriority,
                 Status: this.state.newTaskStatus,
-                TimerConfig: this.state.newTimerConfig,
+                Duration: this.state.newDuration,
             };
 
             var newTaskData = this.state.taskData.concat(newTask);
@@ -130,7 +141,7 @@ var TaskContainer = React.createClass({
                 Description: this.state.newTaskDescription,
                 Priority: this.state.newTaskPriority,
                 Status: this.state.newTaskStatus,
-                TimerConfig: this.state.newTimerConfig
+                Duration: 0
             };
 
             var newTaskData = this.state.taskData.concat(newTask);
@@ -142,7 +153,7 @@ var TaskContainer = React.createClass({
                 newTaskDescription: '',
                 newTaskPriority: '',
                 newTaskStatus: '',
-                newTimerConfig: '',
+                newDuration: '',
                 editMode: '0'
             });
         
@@ -164,12 +175,12 @@ var TaskContainer = React.createClass({
                     newTaskDescription={this.state.newTaskDescription}
                     newTaskPriority={this.state.newTaskPriority}
                     newTaskStatus={this.state.newTaskStatus}
-                    newTimerConfig={this.state.newTimerConfig}
+                    newDuration={this.state.newDuration}
                     handleNewTaskNameChange={this.handleNewTaskNameTextChange}
                     handleNewTaskDescriptionChange={this.handleNewTaskDescriptionTextChange}
                     handleNewTaskPriorityChange={this.handleNewTaskPriorityTextChange}
                     handleNewTaskStatusChange={this.handleNewTaskStatusTextChange}
-                    handleNewTimerConfigChange={this.handleNewTimerConfigTextChange}
+                    handleNewDurationChange={this.handleNewDurationTextChange}
                     onSaveButtonClick={this.handleSaveButtonClick}
                     onTaskDeleteButtonClick={this.handleDeleteTaskRow}
                     onTaskEditButtonClick={this.handleEditTaskRow}

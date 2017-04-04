@@ -3,7 +3,7 @@
 var React = require('react');
 
 var Timer = React.createClass({
-   // get initial state
+  
   getInitialState: function() {
     // initial vars
   	return {  
@@ -125,7 +125,6 @@ var Timer = React.createClass({
     var key = show + this.state.session;
     return (
       <div>
-
         <div className="btn-group">
             <label className="btn btn-primary">
               <input type="radio" name="timerOptions" id="rdPomodoro" onClick={this.clickPomodoro} /> Pomodoro 
@@ -145,22 +144,18 @@ var Timer = React.createClass({
           </div>
         </div>
         
-        
         <div className="btn-group" role="group" >
-          <button type="button" className="btn btn-primary"  onClick={this.clickStart}>Start</button>
-          <button type="button" className="btn btn-danger"  onClick={this.clickStop}>Stop</button>
+          <button type="button" className="btn btn-primary" onClick={this.clickStart}>Start</button>
+          <button type="button" className="btn btn-danger" onClick={this.clickStop}>Stop</button>
           <button type="button" className="btn btn-warning" onClick={this.clickReset} >Reset</button>
-        
         </div>
 
-        <div id="options">
+        <div id="options" style={{display: 'none'}}>
           <span>Session</span>
           <input className="session" type="number" value={this.state.session} min="1" max="60" onChange={this.handleSessionChange}/> 
           <span>Break</span>
           <input className="break" type="number" value={this.state.pause} min="1" max="60" onChange={this.handlePauseChange}/>
         </div>
-
-
       </div>
     )
   }

@@ -17,7 +17,7 @@ var TaskList = React.createClass({
                     taskDescription={item.Description} 
                     taskPriority={item.Priority} 
                     taskStatus={item.Status}
-                    taskTimerConfig={item.TimerConfig}
+                    taskDuration={item.Duration}
                     taskDeleteButtonClick={this.props.onTaskDeleteButtonClick}
                     taskEditButtonClick={this.props.onTaskEditButtonClick}
                 />
@@ -32,7 +32,7 @@ var TaskList = React.createClass({
                         <th>Task Details</th>
                         <th>Priority</th>
                         <th>Status</th>
-                        <th>Timer Config</th>
+                        <th>Duration</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -83,9 +83,9 @@ var TaskList = React.createClass({
                         <th>
 
                             
-                            <input type="text" className="form-control" id="timerConfig" 
-                                onChange={this.props.handleNewTimerConfigChange}
-                                value={this.props.newTimerConfig} />
+                            <input type="text" className="form-control" id="duration" disabled
+                                onChange={this.props.handleNewDurationChange}
+                                value={this.props.newDuration} />
                         </th>
                         
                         <th><button type="button" className="btn btn-primary" onClick={this.props.onSaveButtonClick} >Save</button></th>
